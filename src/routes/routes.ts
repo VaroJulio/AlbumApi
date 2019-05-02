@@ -1,11 +1,9 @@
 import {Request, Response, Application} from "express";
+import { HomeController } from "../controllers/home-controller";
 
-export class Routes {       
+export class Routes {    
+    public homeController: HomeController = new HomeController();   
     public routes(app: Application): void {          
-        app.route('/').get((req: Request, res: Response) => {            
-            res.status(200).send({
-                message: 'Acceso a petición GET'
-            });
-        });             
+        app.route('/').get(this.homeController.getHome);
     }
 }
