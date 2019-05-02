@@ -2,6 +2,7 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import { port } from "./settings";
 import { Routes } from "./routes/routes";
+import { ErrorStatus } from "./models/error-status";
  
 class App {   
     public app: express.Application;  
@@ -19,11 +20,11 @@ class App {
     }
     private handleErrors(): void {
         this.app.use((req: express.Request, res: express.Response, next: Function) => {
-            let err = new Error('Not Found');
-            err['status'] = 404;
-            next(err);
+            let err: ErrorStatus = new ErrorStatus('Not Found');
+            err.status = 404;
+            next(err, "hola");
         });
-        this.app.use((err: any, req: express.Request, res: express.Response, next: Function) => {
+        this.app.use((err: ErrorStatus, req: express.Request, res: express.Response, next: Function) => {
             res.status(err.status || 500);
             res.send(err.message);
         });
