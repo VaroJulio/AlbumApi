@@ -16,4 +16,10 @@ const normalizePort = (val: string) => {
   return false;
 }
 
-export const port = normalizePort(process.env.port || process.env.PORT || "3978");
+export const port = normalizePort(process.env.PORT || "3978");
+export const usersurl = process.env.USERSURL;
+export const photosurl = process.env.PHOTOSURL;
+export const albumsurl = process.env.ALBUMSURL;
+export const users = process.env.USERSSERVICENAME;
+export const photos = process.env.PHOTOSSERVICENAME;
+export const albums = process.env.ALBUMSSERVICENAME;
