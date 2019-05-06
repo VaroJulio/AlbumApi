@@ -14,5 +14,11 @@ const normalizePort = (val) => {
     }
     return false;
 };
-exports.port = normalizePort(process.env.port || process.env.PORT || "3978");
+exports.port = normalizePort(process.env.PORT || "3978");
+exports.usersurl = process.env.USERSURL;
+exports.photosurl = process.env.PHOTOSURL;
+exports.albumsurl = process.env.ALBUMSURL;
+exports.users = process.env.USERSSERVICENAME;
+exports.photos = process.env.PHOTOSSERVICENAME;
+exports.albums = process.env.ALBUMSSERVICENAME;
 //# sourceMappingURL=index.js.map

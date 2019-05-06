@@ -8,17 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const HttpStatus = require("http-status-codes");
-const users_service_1 = require("../services/users-service");
-class HomeController {
-    getHome(req, res) {
+const base_service_1 = require("../services/base-service");
+const config = require("../settings/index");
+class UsersService extends base_service_1.BaseService {
+    constructor() {
+        super();
+        this.servName = config.users;
+    }
+    getAll() {
+        const _super = Object.create(null, {
+            get: { get: () => super.get }
+        });
         return __awaiter(this, void 0, void 0, function* () {
-            let servicio = new users_service_1.UsersService();
-            let result = yield servicio.getAll();
-            res.status(HttpStatus.OK).send('Album API</br>There is no front-end, see https://github.com/VaroJulio/AlbumApi for implementation!');
+            return yield _super.get.call(this, this.servName);
         });
     }
-    ;
 }
-exports.HomeController = HomeController;
-//# sourceMappingURL=home-controller.js.map
+exports.UsersService = UsersService;
+//# sourceMappingURL=users-service.js.map

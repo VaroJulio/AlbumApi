@@ -4,6 +4,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const settings_1 = require("./settings");
 const routes_1 = require("./routes/routes");
+const error_status_1 = require("./models/error-status");
+const HttpStatus = require("http-status-codes");
 class App {
     constructor() {
         this.routes = new routes_1.Routes();
@@ -19,12 +21,12 @@ class App {
     }
     handleErrors() {
         this.app.use((req, res, next) => {
-            let err = new Error('Not Found');
-            err['status'] = 404;
+            let err = new error_status_1.ErrorStatus(HttpStatus.getStatusText(HttpStatus.NOT_FOUND));
+            err.status = HttpStatus.NOT_FOUND;
             next(err);
         });
         this.app.use((err, req, res, next) => {
-            res.status(err.status || 500);
+            res.status(err.status || HttpStatus.INTERNAL_SERVER_ERROR);
             res.send(err.message);
         });
     }

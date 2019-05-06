@@ -1,4 +1,5 @@
 import * as config from '../settings/index';
+const fetch = require('node-fetch');
 
 export class BaseService {
     constructor(){};
@@ -117,16 +118,19 @@ export class BaseService {
     };
 
     protected getServiceUrl(serviceName: string, parameters?:any){
-        let url: string;
+        var url: string;
         switch (serviceName){
             case config.users:{
                 url = config.usersurl;
+                break;
             }
             case config.albums:{
                 url = config.albumsurl;
+                break;
             }
             case config.photos:{
                 url = config.photosurl;
+                break;
             }
             default: url = null;
         }
